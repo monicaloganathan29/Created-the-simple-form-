@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<style>
+    div{
+        background-color: gray;
+    }
+    body{
+        font-family: Arial;
+    }
+
+    form{
+        width: 300px;
+        margin: 50px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    input{
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+        .error{
+            color: red;
+            font-size: 12px;
+
+        }
+
+        button{
+            width: 100%;
+            padding: 10px;
+            background: green;
+             
+            border: none;
+            cursor: pointer;
+        
+    }
+</style>
+
+
+
+
+<body>
+    
+    <form id="form">
+        <h2>Registration</h2>
+
+        <label>Name:</label>
+        <input type="text" placeholder="Enter Your Name" id="name">
+        <div id="nameError" class="error"></div><br>
+
+        <lable>Email:</lable>
+        <input type="text" placeholder="Email" id="email">
+        <div id="emailError" class="error"></div><br>
+
+        <label>Password:</label>
+        <input type="password" id="password">
+        <div id="passwordError" class="error"></div><br>
+
+        <button id="submitbtn">Submit</button>
+
+    </form>
+    
+
+    <script>
+        var nameInput = document.getElementById("name")
+        var emailInput = document.getElementById("email")
+        var passwordInput = document.getElementById("password")
+        var submitbtn = document.getElementById("submitbtn")
+
+        var nameError = document.getElementById("nameError")
+        var emailError = document.getElementById("emailError")
+        var passwordError= document.getElementById("passwordError")
+
+        function validateform(){
+
+            var valid = true;
+
+            /* Name validation*/
+            if(nameInput.value.trim()===""){
+                nameError.textContent = "Name connot be empty";
+                valid = false
+            }
+            else{
+                nameError.textContent = "";
+            }
+
+            /*Email validation*/
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            
+            if(!emailInput.value.match(emailPattern)){
+                emailError.textContent = "Enter a Valid email";
+                valid = false
+            }
+            else{
+                emailError.textContent = "";
+            }
+       
+            /* Password  validation*/
+            if(passwordInput.value.length<6){
+                passwordError.textContent = "Password must be at least 6 characters";
+                valid = false
+            }
+            else{
+                passwordError.textContent = "";
+
+            }
+            
+            /* Enable / Disable button*/
+            submitBtn.disabled = !valid;
+
+        }
+
+        nameInput.addEventListener("input", validateform);
+        emailInput.addEventListener("input", validateform);
+        passwordInput.addEventListener("input", validateform);
+
+       
+        
+
+    </script>
+</body>
+</html>
